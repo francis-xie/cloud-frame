@@ -1,0 +1,18 @@
+server:
+  port: 8301
+spring:
+  application:
+    name: vi-config
+  profiles:
+    active: native #使用本地配置，要使用git存储改为git即可
+  cloud:
+    config:
+      server:
+        native: #本地仓库存储
+          search-locations: classpath:/config/{application}
+        git: #Git仓库存储
+          uri: https://gitee.com/francis-xie/vi-config.git
+          username: francis-x
+          password: f123456
+          clone-on-start: true #开启启动时直接从git获取配置
+          search-paths: '{application}'

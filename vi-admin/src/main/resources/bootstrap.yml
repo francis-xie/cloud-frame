@@ -1,0 +1,5 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: vi-admin #服务名称
