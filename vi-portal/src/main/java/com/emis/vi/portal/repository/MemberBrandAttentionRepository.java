@@ -10,6 +10,6 @@ import java.util.List;
  */
 public interface MemberBrandAttentionRepository extends MongoRepository<MemberBrandAttention,String> {
     MemberBrandAttention findByMemberIdAndBrandId(Long memberId, Long brandId);
-    int deleteByMemberIdAndBrandId(Long memberId, Long brandId);
+    int deleteByMemberIdAndBrandId(Long memberId,Long brandId);
     List<MemberBrandAttention> findByMemberId(Long memberId);
 }

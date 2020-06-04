@@ -1,16 +1,16 @@
 package com.emis.vi.portal.service.impl;
 
-import com.macro.mall.common.exception.Asserts;
-import com.macro.mall.mapper.UmsMemberLevelMapper;
-import com.macro.mall.mapper.UmsMemberMapper;
-import com.macro.mall.model.UmsMember;
-import com.macro.mall.model.UmsMemberExample;
-import com.macro.mall.model.UmsMemberLevel;
-import com.macro.mall.model.UmsMemberLevelExample;
-import com.macro.mall.portal.domain.MemberDetails;
-import com.macro.mall.portal.service.RedisService;
-import com.macro.mall.portal.service.UmsMemberService;
-import com.macro.mall.security.util.JwtTokenUtil;
+import com.emis.vi.common.exception.Asserts;
+import com.emis.vi.mapper.UmsMemberLevelMapper;
+import com.emis.vi.mapper.UmsMemberMapper;
+import com.emis.vi.model.UmsMember;
+import com.emis.vi.model.UmsMemberExample;
+import com.emis.vi.model.UmsMemberLevel;
+import com.emis.vi.model.UmsMemberLevelExample;
+import com.emis.vi.portal.domain.MemberDetails;
+import com.emis.vi.portal.service.RedisService;
+import com.emis.vi.portal.service.UmsMemberService;
+import com.emis.vi.security.util.JwtTokenUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,6 @@ import java.util.Random;
 
 /**
  * 会员管理Service实现类
- * Created by macro on 2018/8/3.
  */
 @Service
 public class UmsMemberServiceImpl implements UmsMemberService {

@@ -1,8 +1,8 @@
 package com.emis.vi.portal.service.impl;
 
-import com.macro.mall.portal.domain.MemberReadHistory;
-import com.macro.mall.portal.repository.MemberReadHistoryRepository;
-import com.macro.mall.portal.service.MemberReadHistoryService;
+import com.emis.vi.portal.domain.MemberReadHistory;
+import com.emis.vi.portal.repository.MemberReadHistoryRepository;
+import com.emis.vi.portal.service.MemberReadHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,6 @@ import java.util.List;
 
 /**
  * 会员浏览记录管理Service实现类
- * Created by macro on 2018/8/3.
  */
 @Service
 public class MemberReadHistoryServiceImpl implements MemberReadHistoryService {

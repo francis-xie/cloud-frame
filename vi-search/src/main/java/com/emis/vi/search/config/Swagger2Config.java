@@ -28,9 +28,9 @@ public class Swagger2Config {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("mall搜索系统")
-                .description("mall搜索模块")
-                .contact("macro")
+                .title("vi搜索系统")
+                .description("vi搜索模块")
+                .contact("emis")
                 .version("1.0")
                 .build();
     }

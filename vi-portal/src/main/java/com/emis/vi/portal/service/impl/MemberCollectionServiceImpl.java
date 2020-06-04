@@ -1,8 +1,8 @@
 package com.emis.vi.portal.service.impl;
 
-import com.macro.mall.portal.domain.MemberProductCollection;
-import com.macro.mall.portal.repository.MemberProductCollectionRepository;
-import com.macro.mall.portal.service.MemberCollectionService;
+import com.emis.vi.portal.domain.MemberProductCollection;
+import com.emis.vi.portal.repository.MemberProductCollectionRepository;
+import com.emis.vi.portal.service.MemberCollectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +10,6 @@ import java.util.List;
 
 /**
  * 会员收藏Service实现类
- * Created by macro on 2018/8/2.
  */
 @Service
 public class MemberCollectionServiceImpl implements MemberCollectionService {

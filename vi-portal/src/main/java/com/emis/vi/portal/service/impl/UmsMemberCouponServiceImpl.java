@@ -1,14 +1,14 @@
 package com.emis.vi.portal.service.impl;
 
-import com.macro.mall.common.exception.Asserts;
-import com.macro.mall.mapper.SmsCouponHistoryMapper;
-import com.macro.mall.mapper.SmsCouponMapper;
-import com.macro.mall.model.*;
-import com.macro.mall.portal.dao.SmsCouponHistoryDao;
-import com.macro.mall.portal.domain.CartPromotionItem;
-import com.macro.mall.portal.domain.SmsCouponHistoryDetail;
-import com.macro.mall.portal.service.UmsMemberCouponService;
-import com.macro.mall.portal.service.UmsMemberService;
+import com.emis.vi.common.exception.Asserts;
+import com.emis.vi.mapper.SmsCouponHistoryMapper;
+import com.emis.vi.mapper.SmsCouponMapper;
+import com.emis.vi.model.*;
+import com.emis.vi.portal.dao.SmsCouponHistoryDao;
+import com.emis.vi.portal.domain.CartPromotionItem;
+import com.emis.vi.portal.domain.SmsCouponHistoryDetail;
+import com.emis.vi.portal.service.UmsMemberCouponService;
+import com.emis.vi.portal.service.UmsMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +20,6 @@ import java.util.Random;
 
 /**
  * 会员优惠券管理Service实现类
- * Created by macro on 2018/8/29.
  */
 @Service
 public class UmsMemberCouponServiceImpl implements UmsMemberCouponService {

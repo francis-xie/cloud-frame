@@ -1,15 +1,15 @@
 package com.emis.vi.portal.service.impl;
 
-import com.macro.mall.mapper.OmsCartItemMapper;
-import com.macro.mall.model.OmsCartItem;
-import com.macro.mall.model.OmsCartItemExample;
-import com.macro.mall.model.UmsMember;
-import com.macro.mall.portal.dao.PortalProductDao;
-import com.macro.mall.portal.domain.CartProduct;
-import com.macro.mall.portal.domain.CartPromotionItem;
-import com.macro.mall.portal.service.OmsCartItemService;
-import com.macro.mall.portal.service.OmsPromotionService;
-import com.macro.mall.portal.service.UmsMemberService;
+import com.emis.vi.mapper.OmsCartItemMapper;
+import com.emis.vi.model.OmsCartItem;
+import com.emis.vi.model.OmsCartItemExample;
+import com.emis.vi.model.UmsMember;
+import com.emis.vi.portal.dao.PortalProductDao;
+import com.emis.vi.portal.domain.CartProduct;
+import com.emis.vi.portal.domain.CartPromotionItem;
+import com.emis.vi.portal.service.OmsCartItemService;
+import com.emis.vi.portal.service.OmsPromotionService;
+import com.emis.vi.portal.service.UmsMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -21,7 +21,6 @@ import java.util.List;
 
 /**
  * 购物车管理Service实现类
- * Created by macro on 2018/8/2.
  */
 @Service
 public class OmsCartItemServiceImpl implements OmsCartItemService {

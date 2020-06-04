@@ -37,9 +37,9 @@ public class Swagger2Config {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("mall前台系统")
-                .description("mall前台模块")
-                .contact("macro")
+                .title("vi前台系统")
+                .description("vi前台模块")
+                .contact("emis")
                 .version("1.0")
                 .build();
     }

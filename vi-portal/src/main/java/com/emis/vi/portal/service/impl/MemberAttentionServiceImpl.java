@@ -1,8 +1,8 @@
 package com.emis.vi.portal.service.impl;
 
-import com.macro.mall.portal.domain.MemberBrandAttention;
-import com.macro.mall.portal.repository.MemberBrandAttentionRepository;
-import com.macro.mall.portal.service.MemberAttentionService;
+import com.emis.vi.portal.domain.MemberBrandAttention;
+import com.emis.vi.portal.repository.MemberBrandAttentionRepository;
+import com.emis.vi.portal.service.MemberAttentionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +10,6 @@ import java.util.List;
 
 /**
  * 会员关注Service实现类
- * Created by macro on 2018/8/2.
  */
 @Service
 public class MemberAttentionServiceImpl implements MemberAttentionService {
