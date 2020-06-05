@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 /**
  *
  */
-@FeignClient("mall-admin")
+@FeignClient("vi-admin")
 public interface FeignAdminService {
 
     @PostMapping("/admin/login")

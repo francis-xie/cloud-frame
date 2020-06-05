@@ -13,5 +13,9 @@ eureka:
     #Eureka是为注册中心,是否需要将自己注册到注册中心上(默认为true),本次位单机部署,不需要设置为true;
     #但是注册中心集群时候必须为true;因为集群时，其他Eureka需要从此Eureka中的节点上获取数据；
     register-with-eureka: false #指定是否要注册到注册中心（注册中心不需要开启）
+    #fetchRegistry: false
+    #registerWithEureka: false
+    #serviceUrl:
+      #defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/ #自己作为服务器，公布出来的地址
   server:
     enable-self-preservation: false #关闭保护模式

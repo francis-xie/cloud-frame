@@ -2,4 +2,4 @@ spring:
   profiles:
     active: dev
   application:
-    name: vi-demo
+    name: vi-demo #服务名称

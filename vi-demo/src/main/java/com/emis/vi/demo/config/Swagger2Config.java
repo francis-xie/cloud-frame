@@ -37,9 +37,9 @@ public class Swagger2Config {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("mall-demo系统")
+                .title("vi-demo系统")
                 .description("SpringCloud版本中的一些示例")
-                .contact("macro")
+                .contact("emis")
                 .version("1.0")
                 .build();
     }
