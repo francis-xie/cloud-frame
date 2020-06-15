@@ -1,4 +1,4 @@
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8001/eureka/
+      defaultZone: http://localhost:8001/eureka/ #配置注册中心地址

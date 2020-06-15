@@ -1,13 +1,15 @@
 spring:
   cloud:
-    config:
-      profile: dev #启用环境名称
+    config: #Config客户端配置，通过向Config服务端配置中心来获取配置信息
+      profile: dev #启用环境(配置后缀)名称
       label: master #分支名称
       name: admin #配置文件名称
-      discovery:
+      discovery: #从eureka注册中心获取Config配置中心地址的配置
         enabled: true
         service-id: vi-config
 eureka:
   client:
+    #register-with-eureka: true #注册到Eureka的注册中心
+    #fetch-registry: true #获取注册实例列表
     service-url:
       defaultZone: http://localhost:8001/eureka/ #配置注册中心地址

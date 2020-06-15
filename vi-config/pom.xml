@@ -16,10 +16,12 @@
     </parent>
 
     <dependencies>
+        <!--Config服务端(分布式配置中心)依赖，从配置仓库获取配置信息并提供给客户端使用-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-config-server</artifactId>
         </dependency>
+        <!--Eureka客户端依赖，向Eureka注册中心进行注册-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>

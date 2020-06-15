@@ -5,9 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
- * 应用启动入口
+ * 启动后台管理服务vi-admin
  */
-@EnableDiscoveryClient
+@EnableDiscoveryClient //注解表明这是一个Eureka客户端，启用服务注册功能
 @SpringBootApplication
 public class ViAdminApplication {
 

@@ -1,3 +1,5 @@
+#Eureka注册中心集群配置
+
 server:
   port: 8003
 spring:
@@ -5,11 +7,9 @@ spring:
     name: vi-registry
 eureka:
   instance:
-    #hostname: replica2
-    hostname: localhost
+    hostname: replica2
   client:
     serviceUrl:
-      #defaultZone: http://replica1:8002/eureka/ #注册到另一个Eureka注册中心
-      defaultZone: http://localhost:8002/eureka/ #注册到另一个Eureka注册中心
+      defaultZone: http://replica1:8002/eureka/ #注册到另一个Eureka注册中心
     fetch-registry: true
     register-with-eureka: true

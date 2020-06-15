@@ -8,7 +8,7 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 /**
- *
+ * 对SpringSecurity进行配置，以便各监控客户端可以注册
  */
 @Configuration
 public class SecuritySecureConfig extends WebSecurityConfigurerAdapter {

@@ -6,11 +6,11 @@ spring:
   profiles:
     active: dev
   cloud:
-    gateway:
+    gateway: #Gateway API网关服务配置，结合注册中心使用动态路由和过滤器
       discovery:
         locator:
-          enabled: true
-          lower-case-service-id: true #使用小写service-id
+          enabled: true #开启从注册中心动态创建路由的功能
+          lower-case-service-id: true #使用小写service-id服务名，默认是大写
 management: #开启SpringBoot Admin的监控
   endpoints:
     web:

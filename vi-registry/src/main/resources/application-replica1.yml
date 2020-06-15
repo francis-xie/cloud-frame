@@ -1,3 +1,9 @@
+#Eureka注册中心集群配置
+#注意：C:\Windows\System32\drivers\etc\hosts
+#eureka.instance.hostname
+#127.0.0.1 replica1
+#127.0.0.1 replica2
+
 server:
   port: 8002
 spring:
@@ -5,11 +11,9 @@ spring:
     name: vi-registry
 eureka:
   instance:
-    #hostname: replica1
-    hostname: localhost
+    hostname: replica1
   client:
     serviceUrl:
-      #defaultZone: http://replica2:8003/eureka/ #注册到另一个Eureka注册中心
-      defaultZone: http://localhost:8003/eureka/ #注册到另一个Eureka注册中心
+      defaultZone: http://replica2:8003/eureka/ #注册到另一个Eureka注册中心
     fetch-registry: true
     register-with-eureka: true

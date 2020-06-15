@@ -1,0 +1,39 @@
+#Eureka客户端集群配置
+#测试注释掉bootstrap.yml中配置
+
+server:
+  port: 8086 #运行端口号
+  #context-path: /vi # SpringBoot1.X配置应用访问路径
+  servlet:
+    context-path: /vi # SpringBoot2.X配置应用访问路径
+spring:
+  application:
+    name: vi-demo #服务名称
+  datasource:
+    url: jdbc:mysql://localhost:3307/cloud_frame?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: turbo
+  thymeleaf: #thymeleaf 配置
+    cache: false #缓存设置为false, 这样修改之后马上生效，便于调试
+    #content-type: text/html # SpringBoot1.X配置应用访问路径
+    encoding: UTF-8
+    mode: HTML5 # LEGACYHTML5为非严格的 HTML
+    servlet:
+      content-type: text/html # SpringBoot2.X配置应用访问路径
+mybatis:
+  mapper-locations:
+    - classpath:mapper/*.xml
+    - classpath*:com/**/mapper/*.xml
+
+logging:
+  level:
+    root: info #日志配置DEBUG,INFO,WARN,ERROR
+    com.emis.vi: debug
+    com.emis.vi.demo.service.FeignAdminService: debug
+
+eureka:
+  client:
+    register-with-eureka: true #注册到Eureka的注册中心
+    fetch-registry: true #获取注册实例列表
+    service-url:
+      defaultZone: http://replica1:8002/eureka/,http://replica2:8003/eureka/ #同时注册到两个注册中心

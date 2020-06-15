@@ -58,6 +58,7 @@
     </properties>
 
     <dependencies>
+        <!--1.可以通过SpringBoot Actuator的refresh端点来刷新config客户端配置信息-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>

@@ -1,0 +1,59 @@
+基于Spring Cloud Greenwich版本的单微服务项目骨架
+vi
+├── vi-common -- 工具类及通用代码模块
+├── vi-mbg -- MyBatisGenerator生成的数据库操作代码模块
+├── vi-security -- 封装SpringSecurity+JWT的安全认证的模块
+├── vi-registry -- 基于Eureka的微服务注册中心
+├── vi-config -- 基于Spring Cloud Config的微服务配置中心
+├── vi-gateway -- 基于Spring Cloud Gateway的微服务API网关服务
+├── vi-monitor -- 基于Spring Boot Admin的微服务监控中心
+├── vi-admin -- 后台管理系统服务
+├── vi-search -- 基于Elasticsearch的商品搜索系统服务
+├── vi-portal -- 前端商城系统服务
+└── vi-demo -- 微服务远程调用测试服务
+
+项目部署
+安装MySql，创建一个cloud_frame数据库，并导入/document/sql/cloud_frame.sql文件；
+安装Redis、Elasticsearch、MongoDB、RabbitMQ等环境。
+(在微服务项目中我们会启动很多服务，为了便于管理，使用IDEA的Run Dashboard来启动)
+1.启动注册中心vi-registory
+  直接运行com.emis.vi.ViRegistryApplication的main函数即可；
+  运行完成后可以通过注册中心控制台查看：http://localhost:8001
+  (Eureka注册中心依赖：spring-cloud-starter-netflix-eureka-server)
+2.启动配置中心vi-config
+  直接运行com.emis.vi.ViConfigApplication的main函数即可；
+  访问以下接口获取vi-admin在dev环境下的配置信息：http://localhost:8301/master/admin-dev.yml
+  (Config服务端(分布式配置中心)依赖：spring-cloud-config-server、Eureka客户端依赖：spring-cloud-starter-netflix-eureka-client)
+3.启动监控中心vi-monitor
+  直接运行com.emis.vi.ViMonitorApplication的main函数即可；
+  运行完成后可以通过监控中心控制台查看：http://localhost:8101
+  输入账号密码macro:123456可以登录查看。
+  (Admin应用监控中心依赖：spring-boot-admin-starter-server、Eureka客户端依赖、Spring 安全依赖：spring-boot-starter-security)
+4.启动网关服务vi-gateway
+  直接运行com.emis.vi.ViGatewayApplication的main函数即可；
+  访问以下接口获取动态路由规则：http://localhost:8201/actuator/gateway/routes
+5.启动后台管理服务vi-admin
+  直接运行com.emis.vi.ViAdminApplication的main函数即可；
+  通过vi-gateway网关服务访问接口文档：http://localhost:8201/vi-admin/swagger-ui.html
+  登录接口地址：http://localhost:8201/vi-admin/admin/login
+  访问登录接口获取到token后放入认证的头信息即可正常访问其他需要登录的接口：
+  (Eureka客户端依赖：spring-cloud-starter-netflix-eureka-client、Config客户端依赖：spring-cloud-starter-config)
+6.启动前台服务vi-portal
+  直接运行com.emis.vi.portal.ViPortalApplication的main函数即可；
+  通过vi-gateway网关服务访问接口文档：http://localhost:8201/vi-portal/swagger-ui.html
+  登录接口地址：http://localhost:8201/vi-portal/sso/login
+  调用需要登录的接口方式同vi-admin。
+7.启动搜索服务vi-search
+  直接运行com.emis.vi.search.ViSearchApplication的main函数即可；
+  通过vi-gateway网关服务访问接口文档：http://localhost:8201/vi-search/swagger-ui.html
+8.启动测试服务vi-demo
+  直接运行com.emis.vi.ViAdminApplication的main函数即可；
+  通过vi-gateway网关服务访问接口文档：http://localhost:8201/vi-demo/swagger-ui.html
+  可以通过调用FeignAdminController、FeignPortalController、FeignSearchController来测试使用Feign的远程调用功能。
+
+
+开发环境：JDK 1.8、Mysql 5.7、Redis	3.2、Elasticsearch 6.2.2、MongoDb 3.2、RabbitMq 3.7.14、nginx 1.10
+技术选型：Spring Cloud 微服务框架、Spring Boot 容器+MVC框架、Spring Security 认证和授权框架、MyBatis ORM框架、
+MyBatisGenerator 数据层代码生成、PageHelper	MyBatis物理分页插件、Swagger-UI	文档生产工具、Elasticsearch	搜索引擎、
+RabbitMq 消息队列、Redis 分布式缓存、MongoDb NoSql数据库、Druid	数据库连接池、JWT JWT登录支持、LogStash	日志收集、
+Lombok 简化对象封装工具、Seata 全局事务管理框架

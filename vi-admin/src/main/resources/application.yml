@@ -31,10 +31,12 @@ management: #开启SpringBoot Admin的监控
   endpoints:
     web:
       exposure:
-        include: '*'
+        include: '*' #看到所有支持的状态查询
   endpoint:
     health:
-      show-details: always
+      show-details: always #显示所有健康状态
+#logging:
+#  file: admin-client.log #添加开启admin的日志监控
 jwt:
   tokenHeader: Authorization #JWT存储的请求头
   secret: mall-admin-secret #JWT加解密使用的密钥

@@ -16,10 +16,12 @@
     </parent>
 
     <dependencies>
+        <!--Eureka客户端依赖，向Eureka注册中心进行注册，使用动态路由-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
+        <!--Gateway API网关服务依赖-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>

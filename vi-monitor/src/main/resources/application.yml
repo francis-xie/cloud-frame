@@ -1,9 +1,9 @@
 spring:
   application:
     name: vi-monitor
-  security: # 配置登录用户名和密码
+  security: # 配置Spring Security登录用户名和密码
     user:
-      name: macro
+      name: emis
       password: 123456
   boot:  # 不显示admin-server的监控信息
     admin:
@@ -11,7 +11,7 @@ spring:
         ignored-services: ${spring.application.name}
 server:
   port: 8101
-eureka:
+eureka: #admin监控中心会自动从eureka注册中心获取服务列表，然后挨个获取监控信息
   client:
     register-with-eureka: true
     fetch-registry: true
