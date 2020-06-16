@@ -49,7 +49,7 @@ public class OmsOrderReturnApplyController {
     @ApiOperation("获取退货申请详情")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult getItem(@PathVariable Long id) {
+    public CommonResult getItem(@PathVariable(value = "id") Long id) {
         OmsOrderReturnApplyResult result = returnApplyService.getItem(id);
         return CommonResult.success(result);
     }
@@ -57,7 +57,7 @@ public class OmsOrderReturnApplyController {
     @ApiOperation("修改申请状态")
     @RequestMapping(value = "/update/status/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult updateStatus(@PathVariable Long id, @RequestBody OmsUpdateStatusParam statusParam) {
+    public CommonResult updateStatus(@PathVariable(value = "id") Long id, @RequestBody OmsUpdateStatusParam statusParam) {
         int count = returnApplyService.updateStatus(id, statusParam);
         if (count > 0) {
             return CommonResult.success(count);

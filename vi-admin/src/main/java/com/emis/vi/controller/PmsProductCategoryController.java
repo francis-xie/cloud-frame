@@ -42,7 +42,7 @@ public class PmsProductCategoryController {
     @ApiOperation("修改商品分类")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult update(@PathVariable Long id,
+    public CommonResult update(@PathVariable(value = "id") Long id,
                          @Validated
                          @RequestBody PmsProductCategoryParam productCategoryParam,
                          BindingResult result) {
@@ -57,7 +57,7 @@ public class PmsProductCategoryController {
     @ApiOperation("分页查询商品分类")
     @RequestMapping(value = "/list/{parentId}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<CommonPage<PmsProductCategory>> getList(@PathVariable Long parentId,
+    public CommonResult<CommonPage<PmsProductCategory>> getList(@PathVariable(value = "parentId") Long parentId,
                                                                 @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
                                                                 @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
         List<PmsProductCategory> productCategoryList = productCategoryService.getList(parentId, pageSize, pageNum);
@@ -67,7 +67,7 @@ public class PmsProductCategoryController {
     @ApiOperation("根据id获取商品分类")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<PmsProductCategory> getItem(@PathVariable Long id) {
+    public CommonResult<PmsProductCategory> getItem(@PathVariable(value = "id") Long id) {
         PmsProductCategory productCategory = productCategoryService.getItem(id);
         return CommonResult.success(productCategory);
     }
@@ -75,7 +75,7 @@ public class PmsProductCategoryController {
     @ApiOperation("删除商品分类")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult delete(@PathVariable Long id) {
+    public CommonResult delete(@PathVariable(value = "id") Long id) {
         int count = productCategoryService.delete(id);
         if (count > 0) {
             return CommonResult.success(count);

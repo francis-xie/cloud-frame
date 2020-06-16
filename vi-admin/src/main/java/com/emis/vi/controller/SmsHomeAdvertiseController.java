@@ -45,7 +45,7 @@ public class SmsHomeAdvertiseController {
     @ApiOperation("修改上下线状态")
     @RequestMapping(value = "/update/status/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult updateStatus(@PathVariable Long id, Integer status) {
+    public CommonResult updateStatus(@PathVariable(value = "id") Long id, Integer status) {
         int count = advertiseService.updateStatus(id, status);
         if (count > 0)
             return CommonResult.success(count);
@@ -55,7 +55,7 @@ public class SmsHomeAdvertiseController {
     @ApiOperation("获取广告详情")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<SmsHomeAdvertise> getItem(@PathVariable Long id) {
+    public CommonResult<SmsHomeAdvertise> getItem(@PathVariable(value = "id") Long id) {
         SmsHomeAdvertise advertise = advertiseService.getItem(id);
         return CommonResult.success(advertise);
     }
@@ -63,7 +63,7 @@ public class SmsHomeAdvertiseController {
     @ApiOperation("修改广告")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult update(@PathVariable Long id, @RequestBody SmsHomeAdvertise advertise) {
+    public CommonResult update(@PathVariable(value = "id") Long id, @RequestBody SmsHomeAdvertise advertise) {
         int count = advertiseService.update(id, advertise);
         if (count > 0)
             return CommonResult.success(count);

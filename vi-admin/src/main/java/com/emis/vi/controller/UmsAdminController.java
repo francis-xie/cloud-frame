@@ -117,7 +117,7 @@ public class UmsAdminController {
     @ApiOperation("获取指定用户信息")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<UmsAdmin> getItem(@PathVariable Long id) {
+    public CommonResult<UmsAdmin> getItem(@PathVariable(value = "id") Long id) {
         UmsAdmin admin = adminService.getItem(id);
         return CommonResult.success(admin);
     }
@@ -125,7 +125,7 @@ public class UmsAdminController {
     @ApiOperation("修改指定用户信息")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult update(@PathVariable Long id, @RequestBody UmsAdmin admin) {
+    public CommonResult update(@PathVariable(value = "id") Long id, @RequestBody UmsAdmin admin) {
         int count = adminService.update(id, admin);
         if (count > 0) {
             return CommonResult.success(count);
@@ -154,7 +154,7 @@ public class UmsAdminController {
     @ApiOperation("删除指定用户信息")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult delete(@PathVariable Long id) {
+    public CommonResult delete(@PathVariable(value = "id") Long id) {
         int count = adminService.delete(id);
         if (count > 0) {
             return CommonResult.success(count);
@@ -165,7 +165,7 @@ public class UmsAdminController {
     @ApiOperation("修改帐号状态")
     @RequestMapping(value = "/updateStatus/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult updateStatus(@PathVariable Long id,@RequestParam(value = "status") Integer status) {
+    public CommonResult updateStatus(@PathVariable(value = "id") Long id,@RequestParam(value = "status") Integer status) {
         UmsAdmin umsAdmin = new UmsAdmin();
         umsAdmin.setStatus(status);
         int count = adminService.update(id,umsAdmin);
@@ -190,7 +190,7 @@ public class UmsAdminController {
     @ApiOperation("获取指定用户的角色")
     @RequestMapping(value = "/role/{adminId}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<UmsRole>> getRoleList(@PathVariable Long adminId) {
+    public CommonResult<List<UmsRole>> getRoleList(@PathVariable(value = "adminId") Long adminId) {
         List<UmsRole> roleList = adminService.getRoleList(adminId);
         return CommonResult.success(roleList);
     }
@@ -210,7 +210,7 @@ public class UmsAdminController {
     @ApiOperation("获取用户所有权限（包括+-权限）")
     @RequestMapping(value = "/permission/{adminId}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<UmsPermission>> getPermissionList(@PathVariable Long adminId) {
+    public CommonResult<List<UmsPermission>> getPermissionList(@PathVariable(value = "adminId") Long adminId) {
         List<UmsPermission> permissionList = adminService.getPermissionList(adminId);
         return CommonResult.success(permissionList);
     }

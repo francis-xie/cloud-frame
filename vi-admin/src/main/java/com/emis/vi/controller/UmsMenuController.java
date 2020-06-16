@@ -39,7 +39,7 @@ public class UmsMenuController {
     @ApiOperation("修改后台菜单")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult update(@PathVariable Long id,
+    public CommonResult update(@PathVariable(value = "id") Long id,
                                @RequestBody UmsMenu umsMenu) {
         int count = menuService.update(id, umsMenu);
         if (count > 0) {
@@ -52,7 +52,7 @@ public class UmsMenuController {
     @ApiOperation("根据ID获取菜单详情")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<UmsMenu> getItem(@PathVariable Long id) {
+    public CommonResult<UmsMenu> getItem(@PathVariable(value = "id") Long id) {
         UmsMenu umsMenu = menuService.getItem(id);
         return CommonResult.success(umsMenu);
     }
@@ -60,7 +60,7 @@ public class UmsMenuController {
     @ApiOperation("根据ID删除后台菜单")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult delete(@PathVariable Long id) {
+    public CommonResult delete(@PathVariable(value = "id") Long id) {
         int count = menuService.delete(id);
         if (count > 0) {
             return CommonResult.success(count);
@@ -72,7 +72,7 @@ public class UmsMenuController {
     @ApiOperation("分页查询后台菜单")
     @RequestMapping(value = "/list/{parentId}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<CommonPage<UmsMenu>> list(@PathVariable Long parentId,
+    public CommonResult<CommonPage<UmsMenu>> list(@PathVariable(value = "parentId") Long parentId,
                                                   @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
                                                   @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
         List<UmsMenu> menuList = menuService.list(parentId, pageSize, pageNum);
@@ -90,7 +90,7 @@ public class UmsMenuController {
     @ApiOperation("修改菜单显示状态")
     @RequestMapping(value = "/updateHidden/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult updateHidden(@PathVariable Long id, @RequestParam("hidden") Integer hidden) {
+    public CommonResult updateHidden(@PathVariable(value = "id") Long id, @RequestParam("hidden") Integer hidden) {
         int count = menuService.updateHidden(id, hidden);
         if (count > 0) {
             return CommonResult.success(count);

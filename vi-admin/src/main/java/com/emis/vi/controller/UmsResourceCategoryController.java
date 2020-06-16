@@ -44,7 +44,7 @@ public class UmsResourceCategoryController {
     @ApiOperation("修改后台资源分类")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult update(@PathVariable Long id,
+    public CommonResult update(@PathVariable(value = "id") Long id,
                                @RequestBody UmsResourceCategory umsResourceCategory) {
         int count = resourceCategoryService.update(id, umsResourceCategory);
         if (count > 0) {
@@ -57,7 +57,7 @@ public class UmsResourceCategoryController {
     @ApiOperation("根据ID删除后台资源")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult delete(@PathVariable Long id) {
+    public CommonResult delete(@PathVariable(value = "id") Long id) {
         int count = resourceCategoryService.delete(id);
         if (count > 0) {
             return CommonResult.success(count);

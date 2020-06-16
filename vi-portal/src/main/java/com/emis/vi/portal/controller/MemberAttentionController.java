@@ -47,7 +47,7 @@ public class MemberAttentionController {
     @ApiOperation("显示关注列表")
     @RequestMapping(value = "/list/{memberId}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<MemberBrandAttention>> list(@PathVariable Long memberId) {
+    public CommonResult<List<MemberBrandAttention>> list(@PathVariable(value = "memberId") Long memberId) {
         List<MemberBrandAttention> memberBrandAttentionList = memberAttentionService.list(memberId);
         return CommonResult.success(memberBrandAttentionList);
     }

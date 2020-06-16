@@ -14,10 +14,10 @@ import java.util.List;
 
 /**
  * 退货原因管理Controller
- * Created by macro on 2018/10/17.
  */
 @Controller
 @Api(tags = "OmsOrderReturnReasonController", description = "退货原因管理")
+@RequestMapping("/returnReason")
 public class OmsOrderReturnReasonController {
     @Autowired
     private OmsOrderReturnReasonService orderReturnReasonService;
@@ -36,7 +36,7 @@ public class OmsOrderReturnReasonController {
     @ApiOperation("修改退货原因")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult update(@PathVariable Long id, @RequestBody OmsOrderReturnReason returnReason) {
+    public CommonResult update(@PathVariable(value = "id") Long id, @RequestBody OmsOrderReturnReason returnReason) {
         int count = orderReturnReasonService.update(id, returnReason);
         if (count > 0) {
             return CommonResult.success(count);
@@ -67,7 +67,7 @@ public class OmsOrderReturnReasonController {
     @ApiOperation("获取单个退货原因详情信息")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<OmsOrderReturnReason> getItem(@PathVariable Long id) {
+    public CommonResult<OmsOrderReturnReason> getItem(@PathVariable(value = "id") Long id) {
         OmsOrderReturnReason reason = orderReturnReasonService.getItem(id);
         return CommonResult.success(reason);
     }

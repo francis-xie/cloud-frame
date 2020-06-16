@@ -36,7 +36,7 @@ public class SmsHomeRecommendSubjectController {
     @ApiOperation("修改推荐排序")
     @RequestMapping(value = "/update/sort/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult updateSort(@PathVariable Long id, Integer sort) {
+    public CommonResult updateSort(@PathVariable(value = "id") Long id, Integer sort) {
         int count = recommendSubjectService.updateSort(id, sort);
         if (count > 0) {
             return CommonResult.success(count);

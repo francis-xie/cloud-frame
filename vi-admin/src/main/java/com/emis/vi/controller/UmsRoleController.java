@@ -36,7 +36,7 @@ public class UmsRoleController {
     @ApiOperation("修改角色")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult update(@PathVariable Long id, @RequestBody UmsRole role) {
+    public CommonResult update(@PathVariable(value = "id") Long id, @RequestBody UmsRole role) {
         int count = roleService.update(id, role);
         if (count > 0) {
             return CommonResult.success(count);
@@ -58,7 +58,7 @@ public class UmsRoleController {
     @ApiOperation("获取相应角色权限")
     @RequestMapping(value = "/permission/{roleId}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<UmsPermission>> getPermissionList(@PathVariable Long roleId) {
+    public CommonResult<List<UmsPermission>> getPermissionList(@PathVariable(value = "roleId") Long roleId) {
         List<UmsPermission> permissionList = roleService.getPermissionList(roleId);
         return CommonResult.success(permissionList);
     }
@@ -96,7 +96,7 @@ public class UmsRoleController {
     @ApiOperation("修改角色状态")
     @RequestMapping(value = "/updateStatus/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult updateStatus(@PathVariable Long id, @RequestParam(value = "status") Integer status) {
+    public CommonResult updateStatus(@PathVariable(value = "id") Long id, @RequestParam(value = "status") Integer status) {
         UmsRole umsRole = new UmsRole();
         umsRole.setStatus(status);
         int count = roleService.update(id, umsRole);
@@ -109,7 +109,7 @@ public class UmsRoleController {
     @ApiOperation("获取角色相关菜单")
     @RequestMapping(value = "/listMenu/{roleId}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<UmsMenu>> listMenu(@PathVariable Long roleId) {
+    public CommonResult<List<UmsMenu>> listMenu(@PathVariable(value = "roleId") Long roleId) {
         List<UmsMenu> roleList = roleService.listMenu(roleId);
         return CommonResult.success(roleList);
     }
@@ -117,7 +117,7 @@ public class UmsRoleController {
     @ApiOperation("获取角色相关资源")
     @RequestMapping(value = "/listResource/{roleId}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<UmsResource>> listResource(@PathVariable Long roleId) {
+    public CommonResult<List<UmsResource>> listResource(@PathVariable(value = "roleId") Long roleId) {
         List<UmsResource> roleList = roleService.listResource(roleId);
         return CommonResult.success(roleList);
     }

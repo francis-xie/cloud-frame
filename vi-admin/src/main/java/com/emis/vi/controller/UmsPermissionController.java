@@ -35,7 +35,7 @@ public class UmsPermissionController {
     @ApiOperation("修改权限")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult update(@PathVariable Long id, @RequestBody UmsPermission permission) {
+    public CommonResult update(@PathVariable(value = "id") Long id, @RequestBody UmsPermission permission) {
         int count = permissionService.update(id,permission);
         if(count>0){
             return CommonResult.success(count);

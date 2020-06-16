@@ -42,7 +42,7 @@ public class UmsResourceController {
     @ApiOperation("修改后台资源")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult update(@PathVariable Long id,
+    public CommonResult update(@PathVariable(value = "id") Long id,
                                @RequestBody UmsResource umsResource) {
         int count = resourceService.update(id, umsResource);
         dynamicSecurityMetadataSource.clearDataSource();
@@ -56,7 +56,7 @@ public class UmsResourceController {
     @ApiOperation("根据ID获取资源详情")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<UmsResource> getItem(@PathVariable Long id) {
+    public CommonResult<UmsResource> getItem(@PathVariable(value = "id") Long id) {
         UmsResource umsResource = resourceService.getItem(id);
         return CommonResult.success(umsResource);
     }
@@ -64,7 +64,7 @@ public class UmsResourceController {
     @ApiOperation("根据ID删除后台资源")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult delete(@PathVariable Long id) {
+    public CommonResult delete(@PathVariable(value = "id") Long id) {
         int count = resourceService.delete(id);
         dynamicSecurityMetadataSource.clearDataSource();
         if (count > 0) {

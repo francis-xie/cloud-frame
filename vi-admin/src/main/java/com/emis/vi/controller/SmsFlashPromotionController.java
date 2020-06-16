@@ -36,7 +36,7 @@ public class SmsFlashPromotionController {
     @ApiOperation("编辑活动信息")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public Object update(@PathVariable Long id, @RequestBody SmsFlashPromotion flashPromotion) {
+    public Object update(@PathVariable(value = "id") Long id, @RequestBody SmsFlashPromotion flashPromotion) {
         int count = flashPromotionService.update(id, flashPromotion);
         if (count > 0) {
             return CommonResult.success(count);
@@ -47,7 +47,7 @@ public class SmsFlashPromotionController {
     @ApiOperation("删除活动信息")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public Object delete(@PathVariable Long id) {
+    public Object delete(@PathVariable(value = "id") Long id) {
         int count = flashPromotionService.delete(id);
         if (count > 0) {
             return CommonResult.success(count);
@@ -58,7 +58,7 @@ public class SmsFlashPromotionController {
     @ApiOperation("修改上下线状态")
     @RequestMapping(value = "/update/status/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public Object update(@PathVariable Long id, Integer status) {
+    public Object update(@PathVariable(value = "id") Long id, Integer status) {
         int count = flashPromotionService.updateStatus(id, status);
         if (count > 0) {
             return CommonResult.success(count);
@@ -69,7 +69,7 @@ public class SmsFlashPromotionController {
     @ApiOperation("获取活动详情")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Object getItem(@PathVariable Long id) {
+    public Object getItem(@PathVariable(value = "id") Long id) {
         SmsFlashPromotion flashPromotion = flashPromotionService.getItem(id);
         return CommonResult.success(flashPromotion);
     }

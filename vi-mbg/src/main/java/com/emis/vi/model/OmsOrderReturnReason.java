@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class OmsOrderReturnReason implements Serializable {
+    //@ApiModelProperty(value = "id", example = "0")
     private Long id;
 
     @ApiModelProperty(value = "退货类型")

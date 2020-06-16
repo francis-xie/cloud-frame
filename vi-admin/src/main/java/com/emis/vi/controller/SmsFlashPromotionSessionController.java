@@ -36,7 +36,7 @@ public class SmsFlashPromotionSessionController {
     @ApiOperation("修改场次")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult update(@PathVariable Long id, @RequestBody SmsFlashPromotionSession promotionSession) {
+    public CommonResult update(@PathVariable(value = "id") Long id, @RequestBody SmsFlashPromotionSession promotionSession) {
         int count = flashPromotionSessionService.update(id, promotionSession);
         if (count > 0) {
             return CommonResult.success(count);
@@ -47,7 +47,7 @@ public class SmsFlashPromotionSessionController {
     @ApiOperation("修改启用状态")
     @RequestMapping(value = "/update/status/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult updateStatus(@PathVariable Long id, Integer status) {
+    public CommonResult updateStatus(@PathVariable(value = "id") Long id, Integer status) {
         int count = flashPromotionSessionService.updateStatus(id, status);
         if (count > 0) {
             return CommonResult.success(count);
@@ -58,7 +58,7 @@ public class SmsFlashPromotionSessionController {
     @ApiOperation("删除场次")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult delete(@PathVariable Long id) {
+    public CommonResult delete(@PathVariable(value = "id") Long id) {
         int count = flashPromotionSessionService.delete(id);
         if (count > 0) {
             return CommonResult.success(count);
@@ -69,7 +69,7 @@ public class SmsFlashPromotionSessionController {
     @ApiOperation("获取场次详情")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<SmsFlashPromotionSession> getItem(@PathVariable Long id) {
+    public CommonResult<SmsFlashPromotionSession> getItem(@PathVariable(value = "id") Long id) {
         SmsFlashPromotionSession promotionSession = flashPromotionSessionService.getItem(id);
         return CommonResult.success(promotionSession);
     }

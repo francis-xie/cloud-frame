@@ -38,7 +38,7 @@ public class PmsProductAttributeCategoryController {
     @ApiOperation("修改商品属性分类")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult update(@PathVariable Long id, @RequestParam String name) {
+    public CommonResult update(@PathVariable(value = "id") Long id, @RequestParam String name) {
         int count = productAttributeCategoryService.update(id, name);
         if (count > 0) {
             return CommonResult.success(count);
@@ -50,7 +50,7 @@ public class PmsProductAttributeCategoryController {
     @ApiOperation("删除单个商品属性分类")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult delete(@PathVariable Long id) {
+    public CommonResult delete(@PathVariable(value = "id") Long id) {
         int count = productAttributeCategoryService.delete(id);
         if (count > 0) {
             return CommonResult.success(count);
@@ -62,7 +62,7 @@ public class PmsProductAttributeCategoryController {
     @ApiOperation("获取单个商品属性分类信息")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<PmsProductAttributeCategory> getItem(@PathVariable Long id) {
+    public CommonResult<PmsProductAttributeCategory> getItem(@PathVariable(value = "id") Long id) {
         PmsProductAttributeCategory productAttributeCategory = productAttributeCategoryService.getItem(id);
         return CommonResult.success(productAttributeCategory);
     }

@@ -69,7 +69,7 @@ public class OmsOrderController {
     @ApiOperation("获取订单详情:订单信息、商品信息、操作记录")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<OmsOrderDetail> detail(@PathVariable Long id) {
+    public CommonResult<OmsOrderDetail> detail(@PathVariable(value = "id") Long id) {
         OmsOrderDetail orderDetailResult = orderService.detail(id);
         return CommonResult.success(orderDetailResult);
     }

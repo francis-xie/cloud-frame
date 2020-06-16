@@ -41,7 +41,7 @@ public class PmsProductController {
     @ApiOperation("根据商品id获取商品编辑信息")
     @RequestMapping(value = "/updateInfo/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<PmsProductResult> getUpdateInfo(@PathVariable Long id) {
+    public CommonResult<PmsProductResult> getUpdateInfo(@PathVariable(value = "id") Long id) {
         PmsProductResult productResult = productService.getUpdateInfo(id);
         return CommonResult.success(productResult);
     }
@@ -49,7 +49,7 @@ public class PmsProductController {
     @ApiOperation("更新商品")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult update(@PathVariable Long id, @RequestBody PmsProductParam productParam, BindingResult bindingResult) {
+    public CommonResult update(@PathVariable(value = "id") Long id, @RequestBody PmsProductParam productParam, BindingResult bindingResult) {
         int count = productService.update(id, productParam);
         if (count > 0) {
             return CommonResult.success(count);

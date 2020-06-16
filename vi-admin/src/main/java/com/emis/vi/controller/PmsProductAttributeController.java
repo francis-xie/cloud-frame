@@ -31,7 +31,7 @@ public class PmsProductAttributeController {
     @ApiImplicitParams({@ApiImplicitParam(name = "type", value = "0表示属性，1表示参数", required = true, paramType = "query", dataType = "integer")})
     @RequestMapping(value = "/list/{cid}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<CommonPage<PmsProductAttribute>> getList(@PathVariable Long cid,
+    public CommonResult<CommonPage<PmsProductAttribute>> getList(@PathVariable(value = "cid") Long cid,
                                                                  @RequestParam(value = "type") Integer type,
                                                                  @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
                                                                  @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
@@ -54,7 +54,7 @@ public class PmsProductAttributeController {
     @ApiOperation("修改商品属性信息")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult update(@PathVariable Long id, @RequestBody PmsProductAttributeParam productAttributeParam, BindingResult bindingResult) {
+    public CommonResult update(@PathVariable(value = "id") Long id, @RequestBody PmsProductAttributeParam productAttributeParam, BindingResult bindingResult) {
         int count = productAttributeService.update(id, productAttributeParam);
         if (count > 0) {
             return CommonResult.success(count);
@@ -66,7 +66,7 @@ public class PmsProductAttributeController {
     @ApiOperation("查询单个商品属性")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<PmsProductAttribute> getItem(@PathVariable Long id) {
+    public CommonResult<PmsProductAttribute> getItem(@PathVariable(value = "id") Long id) {
         PmsProductAttribute productAttribute = productAttributeService.getItem(id);
         return CommonResult.success(productAttribute);
     }
@@ -86,7 +86,7 @@ public class PmsProductAttributeController {
     @ApiOperation("根据商品分类的id获取商品属性及属性分类")
     @RequestMapping(value = "/attrInfo/{productCategoryId}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<ProductAttrInfo>> getAttrInfo(@PathVariable Long productCategoryId) {
+    public CommonResult<List<ProductAttrInfo>> getAttrInfo(@PathVariable(value = "productCategoryId") Long productCategoryId) {
         List<ProductAttrInfo> productAttrInfoList = productAttributeService.getProductAttrInfo(productCategoryId);
         return CommonResult.success(productAttrInfoList);
     }

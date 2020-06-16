@@ -36,7 +36,7 @@ public class EsProductController {
     @ApiOperation(value = "根据id删除商品")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<Object> delete(@PathVariable Long id) {
+    public CommonResult<Object> delete(@PathVariable(value = "id") Long id) {
         esProductService.delete(id);
         return CommonResult.success(null);
     }
@@ -52,7 +52,7 @@ public class EsProductController {
     @ApiOperation(value = "根据id创建商品")
     @RequestMapping(value = "/create/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult<EsProduct> create(@PathVariable Long id) {
+    public CommonResult<EsProduct> create(@PathVariable(value = "id") Long id) {
         EsProduct esProduct = esProductService.create(id);
         if (esProduct != null) {
             return CommonResult.success(esProduct);
@@ -89,7 +89,7 @@ public class EsProductController {
     @ApiOperation(value = "根据商品id推荐商品")
     @RequestMapping(value = "/recommend/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<CommonPage<EsProduct>> recommend(@PathVariable Long id,
+    public CommonResult<CommonPage<EsProduct>> recommend(@PathVariable(value = "id") Long id,
                                                          @RequestParam(required = false, defaultValue = "0") Integer pageNum,
                                                          @RequestParam(required = false, defaultValue = "5") Integer pageSize) {
         Page<EsProduct> esProductPage = esProductService.recommend(id, pageNum, pageSize);

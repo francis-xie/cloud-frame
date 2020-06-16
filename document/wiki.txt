@@ -32,20 +32,23 @@ vi
 4.启动网关服务vi-gateway
   直接运行com.emis.vi.ViGatewayApplication的main函数即可；
   访问以下接口获取动态路由规则：http://localhost:8201/actuator/gateway/routes
+  (Gateway网关依赖：spring-cloud-starter-gateway、Eureka客户端依赖)
 5.启动后台管理服务vi-admin
   直接运行com.emis.vi.ViAdminApplication的main函数即可；
   通过vi-gateway网关服务访问接口文档：http://localhost:8201/vi-admin/swagger-ui.html
-  登录接口地址：http://localhost:8201/vi-admin/admin/login
+  登录接口地址：http://localhost:8201/vi-admin/admin/login   ：macro、macro123
   访问登录接口获取到token后放入认证的头信息即可正常访问其他需要登录的接口：
   (Eureka客户端依赖：spring-cloud-starter-netflix-eureka-client、Config客户端依赖：spring-cloud-starter-config)
 6.启动前台服务vi-portal
   直接运行com.emis.vi.portal.ViPortalApplication的main函数即可；
   通过vi-gateway网关服务访问接口文档：http://localhost:8201/vi-portal/swagger-ui.html
-  登录接口地址：http://localhost:8201/vi-portal/sso/login
+  登录接口地址：http://localhost:8201/vi-portal/sso/login   ：test、123456
   调用需要登录的接口方式同vi-admin。
+  (Eureka客户端依赖：spring-cloud-starter-netflix-eureka-client、Config客户端依赖：spring-cloud-starter-config)
 7.启动搜索服务vi-search
   直接运行com.emis.vi.search.ViSearchApplication的main函数即可；
   通过vi-gateway网关服务访问接口文档：http://localhost:8201/vi-search/swagger-ui.html
+  (Eureka客户端依赖：spring-cloud-starter-netflix-eureka-client、Config客户端依赖：spring-cloud-starter-config)
 8.启动测试服务vi-demo
   直接运行com.emis.vi.ViAdminApplication的main函数即可；
   通过vi-gateway网关服务访问接口文档：http://localhost:8201/vi-demo/swagger-ui.html
