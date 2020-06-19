@@ -22,6 +22,8 @@
         <module>vi-config</module>
         <module>vi-monitor</module>
         <module>vi-gateway</module>
+
+        <module>vi-admin-web</module>
     </modules>
 
     <parent>
