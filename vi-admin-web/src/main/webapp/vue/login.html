@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--页面整体结构-->
+<div id="app">
+    <x-header></x-header>
+    <main>
+        <x-alert></x-alert>
+        <!-- 路由出口，路由匹配到的组件将渲染在这里 -->
+        <router-view></router-view>
+    </main>
+</div>
+
+<footer>
+    <div>
+        <div>
+            <p>前后端分离实践</p>
+            <p>Power by Spring Boot & Vue.js</p>
+        </div>
+    </div>
+</footer>
+
+<!--header template-->
+<script id="header" type="text/x-template">
+    <header>
+        <nav>
+            <div>
+                <!-- 使用 router-link 组件来导航，通过传入 `to` 属性指定链接. -->
+                <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
+                <router-link to="/">
+                    <h1>测试</h1>
+                </router-link>
+            </div>
+            <div v-if="currentUser === null">
+                <router-link to="/signup">
+                    <button>注册</button>
+                </router-link>
+                <router-link to="/login">
+                    <button>登录</button>
+                </router-link>
+            </div>
+            <div v-else>
+                <span>{{ currentUser.username }}</span>
+                <router-link to="/posts/new">
+                    <button>写文章</button>
+                </router-link>
+                <a>
+                    <button @click="logout">退出</button>
+                </a>
+            </div>
+        </nav>
+    </header>
+</script>
+
+<!--posts list template-->
+<script id="posts" type="text/x-template">
+    <div>posts</div>
+</script>
+
+<!--login form template-->
+<script id="login-form" type="text/x-template">
+    <form @submit="handleSubmit">
+        <label for="username">用户名</label>
+        <p>
+            <input v-model="username" type="text" id="username" placeholder="请输入用户名">
+        </p>
+        <label for="password">密码</label>
+        <p>
+            <input v-model="password" type="password" id="password" placeholder="请输入密码">
+        </p>
+        <p>
+            <input type="submit" value="登录">
+        </p>
+    </form>
+</script>
+
+<!--signup form template-->
+<script id="signup-form" type="text/x-template">
+    <form @submit="handleSubmit">
+        <label for="username">用户名</label>
+        <p>
+            <input v-model="username" type="text" id="username" placeholder="请输入用户名">
+        </p>
+        <label for="password">密码</label>
+        <p>
+            <input v-model="password" type="password" id="password" placeholder="请输入密码">
+        </p>
+        <label for="password">确认密码</label>
+        <p>
+            <input v-model="passwordAgain" type="password" id="password-again" placeholder="请再次输入密码">
+        </p>
+        <p>
+            <input type="submit" value="注册">
+        </p>
+    </form>
+</script>
+
+<!-- alert template-->
+<script id="alert" type="text/x-template">
+    <transition name="fade">
+        <div v-show="visible">
+            <button @click="reset"></button>
+            {{ message }}
+        </div>
+    </transition>
+</script>
+
+<script src="../js/vue.min.js"></script>
+<script src="../js/vue-router.min.js"></script>
+<script src="../js/axios.min.js"></script>
+<script src="../js/js.cookie.js"></script>
+<script src="../js/login.js"></script>
+</body>
+</html>

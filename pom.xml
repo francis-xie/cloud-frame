@@ -24,6 +24,8 @@
         <module>vi-gateway</module>
 
         <module>vi-admin-web</module>
+
+        <module>vi-pay</module>
     </modules>
 
     <parent>

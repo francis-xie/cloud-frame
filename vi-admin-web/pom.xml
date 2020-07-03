@@ -8,6 +8,7 @@
 	<version>1.0-SNAPSHOT</version>
 	<name>vi-admin-web</name>
 	<description>vi-admin-web project for Spring Boot</description>
+	<packaging>war</packaging>
 
 	<parent>
 		<groupId>com.emis.vi</groupId>
@@ -16,9 +17,35 @@
 	</parent>
 
 	<dependencies>
+		<!-- springboot web -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!-- springboot tomcat 支持 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope> <!--provided 只在编译和测试的时候使用，打包的时候就没它了-->
+		</dependency>
+		<!-- tomcat的支持.-->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+		</dependency>
+        <!-- servlet依赖，对jsp的支持 -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional> <!-- 这个需要为 true 热部署才有效 -->
 		</dependency>
 	</dependencies>
 

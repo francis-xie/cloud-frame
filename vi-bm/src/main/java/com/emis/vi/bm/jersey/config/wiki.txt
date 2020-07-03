@@ -1,0 +1,4 @@
+Springboot需要对Jersey的配置对象，有三种配置方式，选其一即可，
+第一种方式，创建一个自定义的ResourceConfig（如：JerseyConfig），
+第二种方式，返回一个ResourceConfig类型的@Bean，
+第三种方式，配置一组ResourceConfigCustomizer对象；
