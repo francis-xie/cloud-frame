@@ -1,6 +1,7 @@
 package com.emis.vi.bm.jersey.service;
 
 import org.glassfish.jersey.server.ContainerRequest;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.ServletContext;
@@ -15,60 +16,67 @@ import java.sql.SQLException;
  */
 @Service
 public abstract class emisAbstractService implements IEmisService {
-  protected ServletContext context_ = null;
-  protected Request request_ = null;
-  protected HttpServletRequest httpServletRequest_ = null;
+    protected ServletContext context_ = null;
+    protected Request request_ = null;
+    protected HttpServletRequest httpServletRequest_ = null;
+    protected JdbcTemplate jdbcTemplate;
 
-  public void setRequest(Request request) {
-    this.request_ = request;
-  }
-
-  public void setHttpServletRequest(HttpServletRequest request) {
-    this.httpServletRequest_ = request;
-  }
-
-  public void setServletContext(ServletContext context) {
-    this.context_ = context;
-  }
-
-  /**
-   * 处理Request请求（默认转码）
-   *
-   * @return
-   */
-  protected MultivaluedMap<String, String> parseRequest() {
-    return parseRequest(true);
-  }
-
-  /**
-   * 处理Request请求
-   *
-   * @param decode 是否转码
-   * @return
-   */
-  protected MultivaluedMap<String, String> parseRequest(boolean decode) {
-//    if ("POST".equals(request_.getMethod())) {
-//      return ((ContainerRequest) request_).getFormParameters();
-//    } else {
-//      return ((ContainerRequest) request_).getQueryParameters(decode);
-//    }
-    return null;
-  }
-  public String doAction() throws Exception {
-    String sRet = "";
-    try {
-      System.out.println("-----------Service Running");
-
-      // 实作中继承并override该Method
-      sRet = postAction();
-      System.out.println(sRet);
-
-      System.out.println("-----------Service End");
-    } catch (Exception e) {
-    } finally {
+    public void setRequest(Request request) {
+        this.request_ = request;
     }
-    return sRet;
-  }
 
-  protected abstract String postAction() throws SQLException, Exception;
+    public void setHttpServletRequest(HttpServletRequest request) {
+        this.httpServletRequest_ = request;
+    }
+
+    public void setServletContext(ServletContext context) {
+        this.context_ = context;
+    }
+
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate){
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    /**
+     * 处理Request请求（默认转码）
+     *
+     * @return
+     */
+    protected MultivaluedMap<String, String> parseRequest() {
+        return parseRequest(true);
+    }
+
+    /**
+     * 处理Request请求
+     *
+     * @param decode 是否转码
+     * @return
+     */
+    protected MultivaluedMap<String, String> parseRequest(boolean decode) {
+        if ("POST".equals(request_.getMethod())) {
+            //return ((ContainerRequest) request_).getFormParameters();
+            return ((ContainerRequest) request_).getUriInfo().getPathParameters();
+        } else {
+            //return ((ContainerRequest) request_).getQueryParameters(decode);
+            return ((ContainerRequest) request_).getUriInfo().getQueryParameters(decode);
+        }
+    }
+
+    public String doAction() throws Exception {
+        String sRet = "";
+        try {
+            System.out.println("-----------Service Running");
+
+            // 实作中继承并override该Method
+            sRet = postAction();
+            System.out.println(sRet);
+
+            System.out.println("-----------Service End");
+        } catch (Exception e) {
+        } finally {
+        }
+        return sRet;
+    }
+
+    protected abstract String postAction() throws SQLException, Exception;
 }

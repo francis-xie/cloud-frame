@@ -1,0 +1,20 @@
+大屏点餐系统业务流程
+
+1.访问：http://localhost:8080/bm/h5/bmIndex.html (bmIndex.js) (bmAPI.js)
+》进入页面后，首先调用ws/bm/common/prop加载启动页绑定相关系统参数 (emisBMCommonDatasImpl)
+2.点击进入点餐后，调用ws/bm/syndata/checkLogin进行登入检查 (emisBMSynDataImpl)
+》首次登录成功，立即调用下载排程emisBMDownload，抓取下传档执行相关操作
+(执行SQL文件、更新商品图片、更新分类图片、更新广告轮播图图片、版本更新)
+》再调用ws/bm/syndata/synPartData同步后台资料 (emisBMSynDataImpl)
+(同步门店、系统参数(并重载)、商品系列、图片、促销、对照表)
+》再跳转到bmStart.html页面 (bmStart.js)
+3.进入bmStart.html点餐主页面后，首先调用ws/bm/images/getIndexImgList 获取主页轮播图 (emisBMImagesImpl)
+》点击进入点餐，跳转到bmTypeChoose.html选择用餐方式页面 (bmTypeChoose.js)
+》首先调用ws/bm/images/getOrderHeadImgList 获取点餐页头部轮播图 (emisBMImagesImpl)
+》再调用ws/bm/store/getStoreInfo获取门店基本信息 (emisBMStoreImpl)
+》选择用餐方式后，进入bmOrder.html自助下单页面 (bmOrder.js)
+》首先调用ws/bm/images/getOrderHeadImgList获取点餐页头部轮播图 (emisBMImagesImpl)
+》再调用ws/bm/part/getPartList获取商品列表 (emisBMPartImpl)
+》再调用ws/bm/part/getPromoteInfo获取促销设置 (emisBMPartImpl)
+》再调用ws/bm/part/getBagList获取包装袋列表信息 (emisBMPartImpl)
+...

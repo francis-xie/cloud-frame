@@ -2,6 +2,7 @@ package com.emis.vi.bm.jersey.config;
 
 import com.emis.vi.bm.jersey.resource.SpringbootResource;
 import com.emis.vi.bm.jersey.resource.SpringbootResource2;
+import com.emis.vi.bm.jersey.resource.emisWebServiceEntry;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.stereotype.Component;
 
@@ -20,5 +21,6 @@ public class JerseyConfig extends ResourceConfig {
     public JerseyConfig() {
         register(SpringbootResource.class);
         register(SpringbootResource2.class);
+        register(emisWebServiceEntry.class);
     }
 }

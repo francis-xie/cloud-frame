@@ -4,7 +4,10 @@ import com.emis.vi.bm.jersey.config.AppConfig;
 import com.emis.vi.bm.jersey.service.IEmisService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import javax.servlet.ServletContext;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -20,10 +23,13 @@ import javax.ws.rs.core.Response;
  * User: harry
  * Date: 2019/06/20
  */
+@Component
 @Path("/bm")
 public class emisWebServiceEntry {
     @Context
     protected ServletContext context_;
+    @Resource
+    protected JdbcTemplate jdbcTemplate;
 
     private final String RET = "{\"code\":\"-1\",\"msg\":\"unknown\"}";
 
@@ -47,6 +53,7 @@ public class emisWebServiceEntry {
         if (service != null) {
             service.setServletContext(context_);
             service.setRequest(request);
+            service.setJdbcTemplate(jdbcTemplate);
             try {
                 sRet = service.doAction();
             } catch (Exception e) {

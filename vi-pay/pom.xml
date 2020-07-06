@@ -286,7 +286,7 @@
 
 	<build>
         <!-- 生成war包的名字，应与application.properties(或application.yml)中context-path保持一致 -->
-		<finalName>vi</finalName>
+		<finalName>pay</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

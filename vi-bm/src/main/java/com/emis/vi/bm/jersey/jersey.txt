@@ -1,0 +1,10 @@
+Springboot集成Jersey2总结(Springboot支持Jersey1.x和Jersey2.x)
+1.引入Springboot对jersey的starter包，spring-boot-starter-jersey
+2.Springboot需要对Jersey的配置对象，以创建一个自定义的ResourceConfig配置方式为例
+3.创建一个SpringbootResource资源类
+4.创建自定义ResourceConfig
+
+1. 用户访问：http://localhost:8080/bm/ws/bm/common/prop
+2. 经由JerseyConfig中注册的资源、匹配到emisWebServiceEntry
+3. emisWebServiceEntry中获取在AppConfig中的对应bean实现类emisBMCommonDatasImpl
+4. 返回响应信息

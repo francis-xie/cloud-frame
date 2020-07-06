@@ -1,5 +1,7 @@
 package com.emis.vi.bm.jersey.service;
 
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Request;
@@ -29,6 +31,12 @@ public interface IEmisService {
    * @param context
    */
   public void setServletContext(ServletContext context);
+
+  /**
+   * 设置连接JDBC访问
+   * @param jdbcTemplate
+   */
+  public void setJdbcTemplate(JdbcTemplate jdbcTemplate);
 
   /**
    * 响应请求，实现相关业务逻辑
