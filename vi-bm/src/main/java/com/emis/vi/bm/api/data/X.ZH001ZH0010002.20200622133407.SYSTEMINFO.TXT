@@ -1,0 +1,17 @@
+
+系统参数相关信息
+[程序目录]:E:\pos\venus\trunk\Venus_train
+[操作系统]:Windows 76.1
+[网卡地址]:BC-AE-C5-AC-CC-8F@00-50-56-C0-00-01@00-50-56-C0-00-08
+[JAVA版本]:1.7.0_15
+[JAVA目录]:E:\ide\eclipse-Kepler-4.3\jre1.7.0_15
+[JAVA参数]:-agentlib:jdwp=transport=dt_socket,suspend=y,address=localhost:59291
+[JAVA参数]:-Duser.timezone=Asia/Shanghai
+[JAVA参数]:-Demis.screen=1024,728
+[JAVA参数]:-Dfile.encoding=UTF-8
+[本机的IP]：FrancisXie/10.9.1.42
+[多个IP_1]：127.0.0.1
+[多个IP_2]：10.9.1.42
+[多个IP_3]：192.168.224.1
+[多个IP_4]：192.168.105.1
+你好，Files
