@@ -26,6 +26,7 @@
         <module>vi-admin-web</module>
 
         <module>vi-pay</module>
+        <module>vi-bm</module>
     </modules>
 
     <parent>
