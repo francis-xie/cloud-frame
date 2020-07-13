@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-
-	<groupId>com.emis.vi</groupId>
-	<artifactId>vi-bm</artifactId>
-	<version>1.0-SNAPSHOT</version>
-	<packaging>war</packaging>
-	<name>vi-bm</name>
-	<description>vi-bm project for Spring Boot</description>
+	<!--https://help.aliyun.com/document_detail/133135.html?spm=a2c4g.11186623.6.822.38691f28b41ode-->
+	<modelVersion>4.0.0</modelVersion> <!--声明工程描述应遵循的 POM 模型版本-->
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -16,11 +10,32 @@
 		<version>2.1.7.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+	<!--引入 SOFABoot：https://www.sofastack.tech/projects/sofa-boot/quick-start/ ：2020.07.13-->
+	<!--<parent>-->
+		<!--<groupId>com.alipay.sofa</groupId>-->
+		<!--<artifactId>sofaboot-dependencies</artifactId>-->
+		<!--<version>3.1.0</version>-->
+	<!--</parent>-->
+	<!--或（引入下面这种有点问题）-->
+	<!--<parent>
+		<groupId>com.alipay.sofa</groupId>
+		<artifactId>sofaboot-enterprise-dependencies</artifactId>
+		<version>3.1.0</version>
+	</parent>-->
+
+	<!--工程的全球唯一标识符，一般为公司域名或组织域名的反写。示例工程为：com.emis.vi-->
+	<groupId>com.emis.vi</groupId>
+	<artifactId>vi-bm</artifactId> <!--工程的构件标识符-->
+	<version>1.0-SNAPSHOT</version> <!--工程版本号。SNAPSHOT 意为快照，说明该项目还在开发中，是不稳定的版本-->
+	<packaging>war</packaging> <!--工程产生的构件类型，例如 jar、war、ear、pom-->
+	<name>vi-bm</name> <!--工程的名称，非必选项-->
+	<!--<url>http://maven.apache.org</url> &lt;!&ndash;工程主页的 URL，非必选项&ndash;&gt;-->
+	<description>vi-bm project for Spring Boot</description>
 
 	<properties>
+		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
 		<skipTests>true</skipTests>
 
 		<pagehelper-starter.version>1.2.10</pagehelper-starter.version>
@@ -37,9 +52,13 @@
 
 		<logback.version>1.1.7</logback.version>
 		<log4j2.version>2.8</log4j2.version>
+
+        <maven.surefire.plugin>2.21.0</maven.surefire.plugin>
 	</properties>
 
+	<!--声明了工程相关的所有依赖-->
 	<dependencies>
+		<!--Web 依赖-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -54,6 +73,27 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.alipay.sofa.common</groupId>
+			<artifactId>sofa-common-tools</artifactId>
+			<version>1.0.18</version>
+		</dependency>
+		<!--此依赖默认使用 logback.xml 进行日志打印，因此日志配置文件的名称使用 logback-spring.xml-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-logging</artifactId>
+		</dependency>
+
+		<!--添加 SOFABoot 健康检查扩展能力的依赖-->
+		<!--<dependency>
+			<groupId>com.alipay.sofa</groupId>
+			<artifactId>healthcheck-sofa-boot-starter</artifactId>
+		</dependency>
+		&lt;!&ndash;编写集成测试和单元测试的依赖&ndash;&gt;
+		<dependency>
+			<groupId>com.alipay.sofa</groupId>
+			<artifactId>test-sofa-boot-starter</artifactId>
+		</dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -239,42 +279,42 @@
 		</dependency>
 
 
-        <dependency>
+        <!--<dependency>
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
             <version>4.0</version>
         </dependency>
-		<!--logback -->
+		&lt;!&ndash;logback &ndash;&gt;
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
             <version>1.1.11</version>
-			<!--<scope>test</scope>-->
+			&lt;!&ndash;<scope>test</scope>&ndash;&gt;
 		</dependency>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-core</artifactId>
             <version>1.1.11</version>
-			<!--<scope>test</scope>-->
+			&lt;!&ndash;<scope>test</scope>&ndash;&gt;
 		</dependency>
-		<!--log4j2-->
+		&lt;!&ndash;log4j2&ndash;&gt;
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
 			<version>${log4j2.version}</version>
-			<!--<scope>test</scope>-->
+			&lt;!&ndash;<scope>test</scope>&ndash;&gt;
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
 			<version>${log4j2.version}</version>
-			<!--<scope>test</scope>-->
+			&lt;!&ndash;<scope>test</scope>&ndash;&gt;
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-slf4j-impl</artifactId>
 			<version>${log4j2.version}</version>
-			<!--<scope>test</scope>-->
+			&lt;!&ndash;<scope>test</scope>&ndash;&gt;
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
@@ -285,18 +325,101 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.25</version>
-		</dependency>
+		</dependency>-->
 	</dependencies>
 
 	<build>
 		<!-- 生成war包的名字，应与application.properties(或application.yml)中context-path保持一致 -->
 		<finalName>bm</finalName>
 		<plugins>
+			<!-- http://docs.spring.io/spring-boot/docs/current/maven-plugin/usage.html -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
+				<!-- http://docs.spring.io/spring-boot/docs/current/maven-plugin/usage.html -->
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!--<version>1.4.2.RELEASE</version>-->
+				<!--<configuration>
+					&lt;!&ndash; 可部署的 fat JAR 打包在工程的根目录的 target 下面 &ndash;&gt;
+					<outputDirectory>../../target</outputDirectory>
+					<classifier>executable</classifier>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>-->
 			</plugin>
 		</plugins>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>jdk8</id>
+			<activation>
+				<jdk>1.8</jdk>
+			</activation>
+			<repositories>
+				<repository>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+					<id>maven-snapshot</id>
+					<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+				</repository>
+			</repositories>
+			<pluginRepositories>
+				<pluginRepository>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+					<id>maven-snapshot</id>
+					<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+				</pluginRepository>
+			</pluginRepositories>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>${maven.surefire.plugin}</version>
+						<dependencies>
+							<dependency>
+								<groupId>org.ow2.asm</groupId>
+								<artifactId>asm</artifactId>
+								<version>6.2</version>
+							</dependency>
+						</dependencies>
+						<configuration>
+							<reuseForks>false</reuseForks>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<!--SOFABoot Core 工程：https://help.aliyun.com/document_detail/133188.html-->
+		<!--<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<repositories>
+				<repository>
+					<id>antcloudrelease</id>
+					<name>Ant Cloud</name>
+					<url>http://mvn.cloud.alipay.com/nexus/content/groups/open</url>
+				</repository>
+			</repositories>
+			<pluginRepositories>
+				<pluginRepository>
+					<id>antcloudrelease</id>
+					<name>Ant Cloud</name>
+					<url>http://mvn.cloud.alipay.com/nexus/content/groups/open</url>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>-->
+	</profiles>
 
 </project>

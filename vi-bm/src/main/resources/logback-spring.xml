@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--https://help.aliyun.com/document_detail/133138.html?spm=a2c4g.11186623.6.825.a25539b6AEkrmI-->
+<!--please pay attention that: file name should not be logback.xml，name it logback-spring.xml to use it in springboot framework-->
+<configuration>
+
+    <!--注意：若需要用 spring 扩展 profile 支持，则文件名应为 logback-spring.xml，而不是 logback.xml。-->
+    <!--配置映射关系： logback-spring.xml 中属性，通过属性关键字转换，
+        分别映射到 application.properties 中的 logging.path 和 logging.level-->
+    <springProperty scope="context" name="logging.path" source="logging.path"/>
+    <springProperty scope="context" name="logging.level" source="logging.level.com.emis.vi"/>
+
+    <!--标准输出（STDOUT）：标准输出是为了保证本地运行时能将一些应用中的启动信息或者异常信息直接打印在控制台中-->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{HH:mm:ss.SSS} %-5level %logger{80} - %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+    <!--error 输出：以“天”为单位生成各日志文件 -->
+    <appender name="ERROR-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>true</append>
+        <!-- 过滤器，只记录 error 级别的日志 -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>error</level>
+        </filter>
+        <!-- 日志名称 -->
+        <file>${logging.path}/vi-bm/common-error.log</file>
+        <!-- 每天生成一个日志文件，保存 30 天的日志文件 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名：按天回滚 -->
+            <FileNamePattern>${logging.path}/vi-bm/common-error.log.%d{yyyy-MM-dd}</FileNamePattern>
+            <!--日志文件保留天数-->
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d 表示日期，%thread 表示线程名，%-5level：级别从左显示 5 个字符宽度 %msg：日志消息，%n 是换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <!-- 编码 -->
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!--info 输出-->
+    <appender name="ROOT-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>true</append>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${logging.level}</level>
+        </filter>
+        <file>${logging.path}/vi-bm/common-default.log</file>
+        <!-- 每天生成一个日志文件，保存 30 天的日志文件 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名：按天回滚 daily -->
+            <FileNamePattern>${logging.path}/vi-bm/common-default.log.%d{yyyy-MM-dd}
+            </FileNamePattern>
+            <!--日志文件保留天数-->
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d 表示日期，%thread 表示线程名，%-5level：级别从左显示 5 个字符宽度 %msg：日志消息，%n 是换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <!-- 编码 -->
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- tracer mdc example, you can delete it -->
+    <appender name="MDC-EXAMPLE-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>true</append>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${logging.level}</level>
+        </filter>
+        <file>${logging.path}/vi-bm/mdc-example.log</file>
+        <!-- to generate a log file everyday with a longest lasting of 30 days -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- logfile name with daily rolling-->
+            <FileNamePattern>${logging.path}/vi-bm/mdc-example.log.%d{yyyy-MM-dd}
+            </FileNamePattern>
+            <!-- log perserve days-->
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--output format：%d is for date，%thread is for thread name，%-5level：loglevel with 5 character  %msg：log message，%n line breaker-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level [%X{SOFA-TraceId},%X{SOFA-SpanId}]  %logger{50} - %msg%n</pattern>
+            <!-- encoding -->
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <logger name="com.emis.vi" level="${logging.level}" additivity="false">
+        <appender-ref ref="ROOT-APPENDER"/>
+        <appender-ref ref="ERROR-APPENDER"/>
+    </logger>
+
+    <logger name="MDC-EXAMPLE" level="${logging.level}" additivity="false">
+        <appender-ref ref="MDC-EXAMPLE-APPENDER"/>
+    </logger>
+
+    <root level="${logging.level}">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="ROOT-APPENDER"/>
+        <appender-ref ref="ERROR-APPENDER"/>
+    </root>
+
+</configuration>

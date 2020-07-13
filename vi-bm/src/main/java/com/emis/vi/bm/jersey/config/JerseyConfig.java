@@ -15,8 +15,8 @@ import javax.ws.rs.ApplicationPath;
  * 可以通过添加@ApplicationPath注解把Jersey的根路径映射在/ws上
  * 如访问SpringbootResource可通过：http://localhost:8080/bm/ws/resource/sayhi?msg=wolfcode
  */
-@ApplicationPath("ws")
-@Component
+//@ApplicationPath("ws")
+//@Component
 public class JerseyConfig extends ResourceConfig {
     public JerseyConfig() {
         register(SpringbootResource.class);
