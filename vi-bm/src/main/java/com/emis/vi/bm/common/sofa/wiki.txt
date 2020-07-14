@@ -1,0 +1,4 @@
+来源：https://github.com/sofastack/sofa-common-tools
+sofa-common-tools 是SOFAStack中间件的常见依赖项，它提供：
+应用程序和中间件的单独日志空间
+SOFA thread线程
