@@ -9,6 +9,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableTransactionManagement
-@MapperScan({"com.emis.vi.bm.mapper"})
+@MapperScan({"com.emis.vi.bm.mapper", "com.emis.vi.bm.jwt.mapper"})
 public class MyBatisConfig {
 }

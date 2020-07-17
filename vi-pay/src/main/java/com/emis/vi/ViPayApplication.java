@@ -11,15 +11,16 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  */
 @SpringBootApplication
 @ServletComponentScan
-public class ViPayApplication extends SpringBootServletInitializer {
+public class ViPayApplication {
+//public class ViPayApplication extends SpringBootServletInitializer { //war方式部署
 
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(ViPayApplication.class);
-	}
-
-	public static void main(String[] args) {
-		SpringApplication.run(ViPayApplication.class, args);
-	}
+    //war方式部署
+    /*@Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(ViPayApplication.class);
+    }*/
+    public static void main(String[] args) {
+        SpringApplication.run(ViPayApplication.class, args);
+    }
 
 }

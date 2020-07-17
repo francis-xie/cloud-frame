@@ -79,17 +79,17 @@
             通过spring的ApplicationListener事件com.alipay.sofa.common.boot.logging.CommonLoggingApplicationListener
             初始化相关日志配置
         -->
-		<!--<dependency>
+		<dependency>
 			<groupId>com.alipay.sofa.common</groupId>
 			<artifactId>log-sofa-boot-starter</artifactId>
 			<version>1.1.2</version>
-		</dependency>-->
+		</dependency>
 		<!--log-sofa-boot-starter中默认有集成了相关日志依赖或sofa-common-tools-->
-		<dependency>
+		<!--<dependency>
 			<groupId>com.alipay.sofa.common</groupId>
 			<artifactId>sofa-common-tools</artifactId>
 			<version>${common.tools.version}</version>
-		</dependency>
+		</dependency>-->
 		<dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
@@ -100,6 +100,20 @@
             <artifactId>logback-core</artifactId>
             <version>${logback.version}</version>
         </dependency>
+		<!--log4j-->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>uk.org.simonsite</groupId>
+			<artifactId>log4j-rolling-appender</artifactId>
+			<version>20150607-2059</version>
+			<scope>system</scope>
+			<!--引入的本地jar包的位置-->
+			<systemPath>${project.basedir}/lib/log4j-rolling-appender.jar</systemPath>
+		</dependency>
 		<!--此依赖默认使用 logback.xml 进行日志打印，因此日志配置文件的名称使用 logback-spring.xml-->
 		<!--<dependency>-->
 			<!--<groupId>org.springframework.boot</groupId>-->
@@ -299,6 +313,35 @@
 			<artifactId>cglib</artifactId>
 			<version>3.2.9</version>
 		</dependency>
+
+		<!--导入本地jar-->
+		<dependency>
+			<groupId>com.pay</groupId>
+			<artifactId>pay</artifactId>
+			<version>1.0.1</version>
+			<scope>system</scope>
+			<!--引入的本地jar包的位置-->
+			<systemPath>${project.basedir}/lib/pay.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.tencent</groupId>
+			<artifactId>wxpay-scanpay-java-sdk</artifactId>
+			<version>1.0.1</version>
+			<scope>system</scope>
+			<!--引入的本地jar包的位置-->
+			<systemPath>${project.basedir}/lib/wxpay-scanpay-java-sdk-1.0.1.jar</systemPath>
+		</dependency>
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+            <version>3.4.49.ALL</version>
+        </dependency>
+        <!--JWT 依赖，jwt 的 java 实现有多种方式可选-->
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.0.2</version>
+        </dependency>
 
 
         <!--<dependency>

@@ -1,5 +1,6 @@
 package com.emis.vi.bm;
 
+import com.alipay.sofa.common.thread.log.ThreadLogger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportResource;
@@ -16,6 +17,7 @@ public class ViBmApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ViBmApplication.class, args);
+        //ThreadLogger.info("Thread pool with name '{}' registered");
         /*if (logger.isInfoEnabled()){
             logger.info("application start");
         }*/

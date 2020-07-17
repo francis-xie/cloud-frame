@@ -4,7 +4,7 @@
  */
 package com.emis.vi.pay.alipay.constants;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
 
 /**
  * $Id: AlipayServiceEnvConstants.java 14854 2015-06-18 10:27:12Z francis.xie $
