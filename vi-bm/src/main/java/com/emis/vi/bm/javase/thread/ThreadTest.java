@@ -22,11 +22,14 @@ import java.util.logging.Logger;
  * Terminated：线程已终止，因为run()方法执行完毕。
  */
 public class ThreadTest {
+    public static final Object lock = new Object(); //线程同步锁
+    public static int count = 0;
+
     public static void main(String[] args) {
         Log log = LogFactory.getLog(LoggingTest.class);
         /*Java语言内置了多线程支持。当Java程序启动的时候，实际上是启动了一个JVM进程，
           然后，JVM启动主线程来执行main()方法。在main()方法中，我们又可以启动其他线程。*/
-        System.out.println("main start...");
+        log("main start...");
         //实例化一个Thread实例，然后调用它的start()方法：
         Thread t = new Thread(); //通过实例变量t来表示这个新线程对象，并开始执行。
         t.start(); // 启动新线程，这个线程启动后实际上什么也不做就立刻结束了。
@@ -34,6 +37,8 @@ public class ThreadTest {
         //我们希望新线程能执行指定的代码
         //方法一：从Thread派生一个自定义类，然后覆写run()方法：
         MyThread t1 = new MyThread(); //Thread t1 = new MyThread();
+        //守护线程是指为其他线程服务的线程。在JVM中，所有非守护线程都执行完毕后，无论有没有守护线程，虚拟机都会自动退出。
+        t1.setDaemon(true); //标记为守护线程；守护线程不能持有需要关闭的资源（如打开文件等）。
         t1.start(); // 启动新线程，start()方法会在内部自动调用实例的run()方法
         //或者简写为：
         Thread t2 = new Thread() {
@@ -46,12 +51,17 @@ public class ThreadTest {
                 } catch (InterruptedException e) {
                     log.error(e, e);
                 }
-                System.out.println("thread t2 run...");
+                log("thread t2 run...");
                 //要模拟并发执行的效果，我们可以在线程中调用Thread.sleep()，强迫当前线程暂停一段时间：
                 try {
                     Thread.sleep(10); //sleep()传入的参数是毫秒。
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                }
+                for (int i=0; i<10000; i++) {
+                    synchronized(ThreadTest.lock) {
+                        ThreadTest.count -= 1;
+                    }
                 }
                 System.out.println("thread t2 end.");
             }
@@ -86,7 +96,11 @@ public class ThreadTest {
         });
         t4.start(); // 启动新线程
 
-        System.out.println("main end...");
+        log("main end...");
+    }
+
+    static void log(String s) {
+        System.out.println(Thread.currentThread().getName() + ": " + s);
     }
 }
 
@@ -105,6 +119,17 @@ class MyThread extends Thread {
             //while (running) { //设置标志位来标识线程是否应该继续运行
             n++;
             System.out.println(n + " hello!");
+        }
+        for (int i = 0; i < 10000; i++) {
+            /*通过加锁和解锁的操作，就能保证指令总是在一个线程执行期间，不会有其他线程会进入此指令区间。
+              即使在执行期线程被操作系统中断执行，其他线程也会因为无法获得锁导致无法进入此指令区间。
+              只有执行线程将锁释放后，其他线程才有机会获得锁并执行。
+              这种加锁和解锁之间的代码块我们称之为临界区（Critical Section），任何时候临界区最多只有一个线程能执行。
+              保证一段代码的原子性就是通过加锁和解锁实现的。Java程序使用synchronized关键字对一个对象进行加锁
+             */
+            synchronized (ThreadTest.lock) {
+                ThreadTest.count += 1;
+            }
         }
         System.out.println("end new thread t1：MyThread!");
     }
