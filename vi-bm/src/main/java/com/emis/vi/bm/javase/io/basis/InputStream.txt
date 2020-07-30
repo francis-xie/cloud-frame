@@ -1,0 +1,25 @@
+InputStream：https://www.liaoxuefeng.com/wiki/1252599548343744/1298069163343905
+InputStream就是Java标准库提供的最基本的输入流。它位于java.io这个包里。java.io包提供了所有同步IO的功能。
+要特别注意的一点是，InputStream并不是一个接口，而是一个抽象类，它是所有输入流的超类。
+这个抽象类定义的一个最重要的方法就是int read()，签名如下：
+public abstract int read() throws IOException;
+这个方法会读取输入流的下一个字节，并返回字节表示的int值（0~255）。如果已读到末尾，返回-1表示不能继续读取了。
+
+在计算机中，类似文件、网络端口这些资源，都是由操作系统统一管理的。应用程序在运行的过程中，
+如果打开了一个文件进行读写，完成后要及时地关闭，以便让操作系统把资源释放掉，
+否则，应用程序占用的资源会越来越多，不但白白占用内存，还会影响其他应用程序的运行。
+
+阻塞
+在调用InputStream的read()方法读取数据时，我们说read()方法是阻塞（Blocking）的。它的意思是，对于下面的代码：
+int n;
+n = input.read(); // 必须等待read()方法返回才能执行下一行代码
+int m = n;
+执行到第二行代码时，必须等read()方法返回后才能继续。因为读取IO流相比执行普通代码，速度会慢很多，
+因此，无法确定read()方法调用到底要花费多长时间。
+
+小结
+Java标准库的java.io.InputStream定义了所有输入流的超类：
+FileInputStream实现了文件流输入；
+ByteArrayInputStream在内存中模拟一个字节流输入。
+总是使用try(resource)来保证InputStream正确关闭。
+
